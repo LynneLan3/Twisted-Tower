@@ -1,0 +1,37 @@
+---
+import { getGuides, guideHref, resolveRelated } from '../lib/guides';
+import { mergeRelatedSlugs, nextStepSlugs } from '../lib/page-relations';
+import { isTrustPath } from '../lib/trust';
+import { ui } from '../lib/ui';
+
+const t = ui();
+if (isTrustPath(Astro.url.pathname)) {
+	return null;
+}
+const entry = Astro.locals.starlightRoute.entry;
+const nextSlugs = nextStepSlugs(entry.data.relations);
+const relatedSlugs = mergeRelatedSlugs(entry.data.related, entry.data.relations).filter(
+	(slug) => !nextSlugs.includes(slug),
+);
+const related = relatedSlugs.length > 0 ? resolveRelated(await getGuides(), relatedSlugs, entry.id) : [];
+---
+
+{
+	related.length > 0 && (
+		<section class="gw-related" aria-labelledby="gw-related-heading">
+			<h2 id="gw-related-heading">{t.relatedGuides}</h2>
+			<ul>
+				{related.map((guide) => (
+					<li>
+						<a href={guideHref(guide)}>
+							<span class="gw-related__title">{guide.data.title}</span>
+							{guide.data.description && (
+								<span class="gw-related__desc">{guide.data.description}</span>
+							)}
+						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+}

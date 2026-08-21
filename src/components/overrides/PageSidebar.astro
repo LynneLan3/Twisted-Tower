@@ -1,0 +1,18 @@
+---
+/**
+ * PageSidebar override — hides the Starlight right-hand TOC rail on Experience
+ * Guide pages (they use the inline editorial On This Page instead) and on the
+ * formal Homepage. Category Landings, trust pages, 404, and fallback docs keep
+ * the default rail.
+ */
+import Default from '@astrojs/starlight/components/PageSidebar.astro';
+import { isExperienceGuide, isExperienceHomepage } from '../../lib/experience-guide';
+
+const isHome = isExperienceHomepage(Astro.locals.starlightRoute.entry);
+const isExperience = isExperienceGuide(
+	Astro.locals.starlightRoute.entry,
+	Astro.url.pathname,
+);
+---
+
+{isHome || isExperience ? null : <Default><slot /></Default>}

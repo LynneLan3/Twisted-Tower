@@ -1,0 +1,179 @@
+---
+import Default from '@astrojs/starlight/components/MarkdownContent.astro';
+import GuideEvidence from '../GuideEvidence.astro';
+import SourceList from '../SourceList.astro';
+import ExperienceGuideSections from '../experience/ExperienceGuideSections.astro';
+import ExperienceHomepage from '../experience/ExperienceHomepage.astro';
+import { isTrustPath } from '../../lib/trust';
+import { isExperienceGuide, isExperienceHomepage } from '../../lib/experience-guide';
+import { loadGuideContent } from '../../lib/guide-content';
+
+const entry = Astro.locals.starlightRoute.entry;
+const isHome = isExperienceHomepage(entry);
+const isSplash = entry.data.template === 'splash';
+const isTrust = isTrustPath(Astro.url.pathname);
+const isExperience = isExperienceGuide(entry, Astro.url.pathname);
+const content = isExperience ? await loadGuideContent(entry) : undefined;
+const headings = content?.headings ?? [];
+const totalHeadings = headings.length;
+---
+
+{
+	isHome ? (
+		// Formal Homepage: fully data-driven composition replaces the legacy
+		// GamePortal splash slot content.
+		<>
+			<style is:inline>
+				html {
+					background: #0f1219;
+					color-scheme: dark;
+				}
+
+				body {
+					background: #0f1219;
+					color: #c5ced6;
+				}
+			</style>
+			<script is:inline>
+				(function () {
+					var root = document.documentElement;
+					root.dataset.theme = 'dark';
+					root.style.colorScheme = 'dark';
+					var observer = new MutationObserver(function () {
+						if (root.dataset.theme !== 'dark') root.dataset.theme = 'dark';
+					});
+					observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+				})();
+			</script>
+			<ExperienceHomepage />
+		</>
+	) : isExperience ? (
+		<div class="exp-guide-body-wrap" data-exp-guide-nav>
+			{totalHeadings > 1 && (
+				<details class="exp-mobile-contents" data-exp-mobile-contents>
+					<summary>
+						<span>Contents</span>
+						<span aria-hidden="true">·</span>
+						<span data-exp-mobile-current>01</span>
+						<span aria-hidden="true">/</span>
+						<span>{String(totalHeadings).padStart(2, '0')}</span>
+					</summary>
+					<ol class="exp-mobile-contents__list">
+						{headings.map((heading, index) => (
+							<li>
+								<a href={`#${heading.id}`} data-exp-toc-link>
+									<span>{String(index + 1).padStart(2, '0')}</span>
+									{heading.text}
+								</a>
+							</li>
+						))}
+					</ol>
+					<a class="exp-mobile-contents__top" href="#top">↑ Top</a>
+				</details>
+			)}
+			<div class:list={['exp-guide-body-grid', totalHeadings > 1 && 'exp-guide-body-grid--with-toc']}>
+				<article class="exp-guide-prose" data-exp-guide-article>
+					<slot />
+				</article>
+				{totalHeadings > 1 && (
+					<aside class="exp-guide-toc" aria-labelledby="exp-guide-toc-title">
+						<nav>
+							<h2 id="exp-guide-toc-title" class="exp-guide-toc__title">On this page</h2>
+							<ol class="exp-guide-toc__list">
+								{headings.map((heading, index) => (
+									<li>
+										<a href={`#${heading.id}`} data-exp-toc-link>
+											<span>{String(index + 1).padStart(2, '0')}</span>
+											{heading.text}
+										</a>
+									</li>
+								))}
+							</ol>
+							<a class="exp-guide-toc__top" href="#top">↑ Top</a>
+						</nav>
+					</aside>
+				)}
+			</div>
+			<ExperienceGuideSections />
+			{totalHeadings > 1 && (
+				<script is:inline>
+					(function () {
+						var root = document.querySelector('[data-exp-guide-nav]');
+						if (!root) return;
+						var headings = Array.prototype.slice.call(root.querySelectorAll('.exp-guide-prose h2[id]'));
+						var links = Array.prototype.slice.call(root.querySelectorAll('[data-exp-toc-link]'));
+						var mobileCurrent = root.querySelector('[data-exp-mobile-current]');
+						var mobileContents = root.querySelector('[data-exp-mobile-contents]');
+						if (!headings.length || !links.length) return;
+
+						function setActive(id) {
+							var activeIndex = 0;
+							links.forEach(function (link) {
+								var isActive = link.getAttribute('href') === '#' + id;
+								if (isActive) {
+									link.setAttribute('aria-current', 'true');
+									activeIndex = headings.findIndex(function (heading) { return heading.id === id; });
+								} else {
+									link.removeAttribute('aria-current');
+								}
+							});
+							if (mobileCurrent && activeIndex >= 0) {
+								mobileCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+							}
+						}
+
+						function jumpToAnchor(event) {
+							var href = event.currentTarget.getAttribute('href');
+							if (!href || href.charAt(0) !== '#') return;
+							var target = document.getElementById(href.slice(1));
+							if (!target) return;
+							event.preventDefault();
+							target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+							if (mobileContents && mobileContents.open) mobileContents.open = false;
+							history.replaceState(null, '', href);
+						}
+
+						links.forEach(function (link) {
+							link.addEventListener('click', jumpToAnchor);
+						});
+
+						if ('IntersectionObserver' in window) {
+							var observer = new IntersectionObserver(function (entries) {
+								entries.forEach(function (entry) {
+									if (entry.isIntersecting) setActive(entry.target.id);
+								});
+							}, { rootMargin: '-18% 0px -70% 0px', threshold: 0 });
+							headings.forEach(function (heading) { observer.observe(heading); });
+						}
+
+						window.addEventListener('scroll', function () {
+							var active = headings[0];
+							var offset = 120;
+							headings.forEach(function (heading) {
+								if (heading.getBoundingClientRect().top <= offset) active = heading;
+							});
+							if (active) setActive(active.id);
+						}, { passive: true });
+
+						setActive(headings[0].id);
+					})();
+				</script>
+			)}
+		</div>
+	) : (
+		<>
+			<Default>
+				<slot />
+			</Default>
+			{
+				!isSplash && !isTrust && (
+					<>
+						<GuideEvidence />
+						<SourceList />
+					</>
+				)
+			}
+		</>
+	)
+}
+

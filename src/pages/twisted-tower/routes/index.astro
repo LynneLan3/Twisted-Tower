@@ -1,0 +1,33 @@
+---
+/**
+ * Formal Routes Index (Player Task Map).
+ * /twisted-tower/routes/
+ *
+ * Generated from `game.routes` — no per-route hardcoded pages. Lists every
+ * route with an "Open route" CTA; guide lists live on the Guides Index.
+ */
+import GameShell from '../../../components/experience/GameShell.astro';
+import RouteTaskMap from '../../../components/experience/routes/RouteTaskMap.astro';
+import { game } from '../../../config/game';
+import { ui } from '../../../lib/ui';
+import { experienceNav } from '../../../lib/experience-nav';
+import '../../../styles/routes.css';
+
+const t = ui();
+const { nav, footerLinks, homeHref, routesHref } = experienceNav();
+const routes = game.routes ?? [];
+---
+
+<GameShell
+	title={`${t.routesNav} — ${game.title}`}
+	description={t.chooseWhatYoureTryingLede}
+	canonical={new URL(routesHref, game.siteUrl).href}
+	siteTitle={game.shortName}
+	homeHref={homeHref}
+	nav={nav}
+	activePath={routesHref}
+	footerLinks={footerLinks}
+	footerText={game.title}
+>
+	<RouteTaskMap routes={routes} />
+</GameShell>

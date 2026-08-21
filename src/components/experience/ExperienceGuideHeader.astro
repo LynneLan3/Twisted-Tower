@@ -1,0 +1,101 @@
+---
+/**
+ * ExperienceGuideHeader — editorial header for Guide content pages.
+ * Rendered inside the Starlight `PageTitle` slot on Experience guides:
+ * breadcrumb, eyebrow, H1, dek, meta, wide hero, fact strip, quick answer,
+ * and the inline On This Page.
+ */
+import { Image } from 'astro:assets';
+import GuideStatus from '../GuideStatus.astro';
+import { ui, formatUiDate } from '../../lib/ui';
+import { experienceNav } from '../../lib/experience-nav';
+import { loadGuideContent } from '../../lib/guide-content';
+import { routeHref } from '../../lib/routes';
+import { game } from '../../config/game';
+
+const { entry } = Astro.locals.starlightRoute;
+const t = ui();
+const { homeHref, guidesHref } = experienceNav();
+const content = await loadGuideContent(entry);
+const data = entry.data;
+const route = content.primaryRoute;
+const routeLink = route ? routeHref(game.hubPath, route.id) : undefined;
+---
+
+{/* Breadcrumb — Home > Route > Guide when the page belongs to a route,
+    falling back to Home > Guides > Guide for orphaned pages. */}
+<div class="exp-guide-crumb-wrap">
+	<nav class="exp-guide-crumb" aria-label={t.breadcrumb}>
+		<a href={homeHref}>{t.homeNav}</a>
+		{route && routeLink ? (
+			<>
+				<span class="exp-guide-crumb__sep" aria-hidden="true">/</span>
+				<a href={routeLink}>{route.title}</a>
+			</>
+		) : (
+			<>
+				<span class="exp-guide-crumb__sep" aria-hidden="true">/</span>
+				<a href={guidesHref}>{t.guidesNav}</a>
+			</>
+		)}
+		<span class="exp-guide-crumb__sep" aria-hidden="true">/</span>
+		<span aria-current="page">{data.title}</span>
+	</nav>
+</div>
+
+{/* Header — reading width */}
+<div class="exp-guide-header-wrap">
+	<header class="exp-guide-header">
+		{data.eyebrow && <p class="exp-eyebrow exp-guide-header__eyebrow">{data.eyebrow}</p>}
+		<h1 class="exp-h1 exp-guide-header__title">{data.title}</h1>
+		{data.description && <p class="exp-lede exp-guide-header__dek">{data.description}</p>}
+		{(data.status || content.lastUpdated) && (
+			<div class="exp-guide-header__meta">
+				{data.status && <GuideStatus status={data.status} />}
+				{content.lastUpdated && (
+					<time datetime={content.lastUpdated.toISOString()}>
+						{t.updatedOn(formatUiDate(content.lastUpdated))}
+					</time>
+				)}
+			</div>
+		)}
+	</header>
+</div>
+
+{/* Hero — same outer container system as the body, full-width within it */}
+{content.cover && (
+	<div class="exp-guide-hero-wrap">
+		<figure class="exp-guide-hero-image">
+			<Image
+				src={content.cover}
+				alt={data.title}
+				width={1280}
+				height={540}
+				sizes="(min-width: 50em) 72rem, 100vw"
+				loading="eager"
+			/>
+		</figure>
+	</div>
+)}
+
+{/* Facts strip + Quick Answer — reading width */}
+{(content.facts.length > 0 || content.quickAnswer) && (
+	<div class="exp-guide-facts-wrap">
+		{content.facts.length > 0 && (
+			<dl class="exp-facts-strip">
+				{content.facts.map((fact) => (
+					<div class="exp-facts-strip__item">
+						<dt>{fact.label}</dt>
+						<dd>{fact.value}</dd>
+					</div>
+				))}
+			</dl>
+		)}
+		{content.quickAnswer && (
+			<aside class="exp-answer" aria-label={t.quickAnswer}>
+				<p class="exp-answer__label">{t.quickAnswer}</p>
+				<p class="exp-answer__text">{content.quickAnswer}</p>
+			</aside>
+		)}
+	</div>
+)}

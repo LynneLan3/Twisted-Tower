@@ -1,0 +1,37 @@
+---
+import { getGuides, guideHref, resolveRelated } from '../lib/guides';
+import { nextStepSlugs } from '../lib/page-relations';
+import { isTrustPath } from '../lib/trust';
+import { ui } from '../lib/ui';
+
+const t = ui();
+if (isTrustPath(Astro.url.pathname)) {
+	return null;
+}
+const entry = Astro.locals.starlightRoute.entry;
+const slugs = nextStepSlugs(entry.data.relations);
+const guides = await getGuides();
+const nextGuides = slugs.length
+	? resolveRelated(guides, slugs, entry.id)
+	: [];
+---
+
+{
+	nextGuides.length > 0 && (
+		<section class="gw-related gw-next-step" aria-labelledby="gw-next-step-heading">
+			<h2 id="gw-next-step-heading">{t.nextQuestions}</h2>
+			<ul>
+				{nextGuides.map((guide) => (
+					<li>
+						<a href={guideHref(guide)}>
+							<span class="gw-related__title">{guide.data.title}</span>
+							{guide.data.description && (
+								<span class="gw-related__desc">{guide.data.description}</span>
+							)}
+						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+}

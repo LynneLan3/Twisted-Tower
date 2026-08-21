@@ -1,0 +1,49 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+import AdSlot from '../AdSlot.astro';
+import FooterTrustLinks from '../FooterTrustLinks.astro';
+import NextStepGuide from '../NextStepGuide.astro';
+import RelatedGuides from '../RelatedGuides.astro';
+import GameShellFooter from '../experience/GameShellFooter.astro';
+import { game } from '../../config/game';
+import { isTrustPath } from '../../lib/trust';
+import { isExperienceGuide, isExperienceHomepage } from '../../lib/experience-guide';
+import { experienceNav } from '../../lib/experience-nav';
+
+const entry = Astro.locals.starlightRoute.entry;
+const isHome = isExperienceHomepage(entry);
+const isSplash = entry.data.template === 'splash';
+const isTrust = isTrustPath(Astro.url.pathname);
+const isExperience = isExperienceGuide(entry, Astro.url.pathname);
+const { footerLinks } = experienceNav();
+const siteTitle = game.shortName ?? game.title;
+---
+
+{
+	isHome ? (
+		<>
+			<GameShellFooter footerLinks={footerLinks} siteTitle={siteTitle} />
+			<FooterTrustLinks />
+		</>
+	) : isExperience ? (
+		<>
+			<AdSlot placement="guide-before-related" />
+			<GameShellFooter footerLinks={footerLinks} siteTitle={siteTitle} />
+			<FooterTrustLinks />
+		</>
+	) : (
+		<>
+			{!isSplash && !isTrust && (
+				<>
+					<NextStepGuide />
+					<AdSlot placement="guide-before-related" />
+					<RelatedGuides />
+				</>
+			)}
+			<Default>
+				<slot />
+			</Default>
+			<FooterTrustLinks />
+		</>
+	)
+}

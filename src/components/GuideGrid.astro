@@ -1,0 +1,21 @@
+---
+import GuideCard from './GuideCard.astro';
+import type { GuideEntry } from '../lib/guides';
+
+interface Props {
+	entries: GuideEntry[];
+	featured?: boolean;
+}
+
+const { entries, featured = false } = Astro.props;
+---
+
+{
+	entries.length > 0 && (
+		<div class:list={['gw-grid', featured && 'gw-grid--featured']}>
+			{entries.map((entry) => (
+				<GuideCard {entry} featured={featured} />
+			))}
+		</div>
+	)
+}

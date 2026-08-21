@@ -1,0 +1,608 @@
+schemaVersion: 1
+templateVersion: 2.0.0
+mode: generated-site
+
+site:
+  id: twisted-tower
+  locale: en
+  siteUrl: https://twisted-tower.vercel.app
+  hubPath: /twisted-tower/
+  title: Twisted Tower Guide & Wiki
+  shortName: Twisted Tower
+  description: "Twisted Tower guide and wiki: release info, system requirements, toy weapons, the five themed floors, achievements, and Adventure Plus details."
+  disclaimer: Unofficial fan site. This site is not affiliated with Atmos Games or 3D Realms.
+
+deployment:
+  provider: vercel
+  # Primary team lynnelan3s-projects — required for all new hotword sites.
+  orgId: "team_yAOizMTSVuT0RJATgFdAlQuG"
+  projectId: ""
+  projectName: ""
+  productionUrl: ""
+  productionBranch: ""
+
+game:
+  name: Twisted Tower
+  hubTitle: Twisted Tower Guide & Wiki
+  tagline: A first-person horror-action shooter set in an abandoned 1950s amusement park. Climb the tower, fight, solve puzzles, and rescue the one you love.
+  releaseStatus: released
+  releaseDate: 2026-08-18
+  developer: Atmos Games
+  publisher: 3D Realms
+  platforms:
+    - PC (Steam)
+
+theme:
+  # Sampled from official Steam screenshots: warm amber / burnt orange primary,
+  # dark charcoal background. Secondary carnival red is used for danger states.
+  accentColor: "#e08020"
+  accentForeground: "#241608"
+  heroPosition: center
+  heroAssetId: hero-carnival
+
+categories:
+  - id: getting-started
+    label: Getting Started
+    description: Basics to know before your first climb up the tower.
+    icon: rocket
+    order: 1
+    imageAssetId: interior-amber
+  - id: gameplay
+    label: Gameplay
+    description: Toy weapons, movement toys, and the core combat loop.
+    icon: puzzle
+    order: 2
+    imageAssetId: combat-arena
+  - id: levels
+    label: Levels
+    description: The five themed floors inside the tower.
+    icon: star
+    order: 3
+    imageAssetId: hero-carnival
+  - id: game-info
+    label: Game Info
+    description: Release info, platforms, and system requirements.
+    icon: information
+    order: 4
+    imageAssetId: carnival-night
+  - id: progression
+    label: Progress & Achievements
+    description: The achievement list and Adventure Plus replay details.
+    icon: clock
+    order: 5
+    imageAssetId: neon-carnival
+
+pages:
+  - id: beginner-guide
+    title: Beginner's Guide
+    description: "What to know before your first climb: the core loop, your goal, and your first floor."
+    category: getting-started
+    slug: beginner-guide
+    source: site-input/pages/beginner-guide.md
+    status: confirmed
+    featured: true
+    sidebarOrder: 1
+    role: core
+    coverAssetId: interior-amber
+    intents:
+      - getting-started
+      - core-loop
+      - first-floor
+    quickAnswer: "Twisted Tower is a single-player first-person horror-action shooter: fight, solve puzzles, and climb through an abandoned 1950s amusement park to rescue Charlotte. A story run takes roughly 4–6 hours."
+    eyebrow: Getting Started
+    facts:
+      - label: Mode
+        value: Single-player
+      - label: Perspective
+        value: First-person
+      - label: Goal
+        value: Reach the top and save Charlotte
+      - label: Length
+        value: ~4–6 hours
+    related:
+      - system-requirements
+      - weapons-guide
+    relations:
+      - pageId: system-requirements
+        type: next-step
+      - pageId: weapons-guide
+        type: next-step
+      - pageId: five-floors
+        type: related
+    assetType: article
+    sources:
+      - type: official
+        title: Steam Store Page
+        url: https://store.steampowered.com/app/1575990/Twisted_Tower/
+      - type: official
+        title: 3D Realms launch announcement (Gematsu)
+        url: https://www.gematsu.com/2026/07/twisted-tower-launches-august-18
+    changeSummary: Initial release.
+  - id: system-requirements
+    title: System Requirements
+    description: Minimum and recommended PC specifications for Twisted Tower.
+    category: game-info
+    slug: system-requirements
+    source: site-input/pages/system-requirements.md
+    status: confirmed
+    featured: false
+    sidebarOrder: 1
+    role: supporting
+    intents:
+      - system-requirements
+      - pc-specs
+      - minimum-requirements
+    quickAnswer: The minimum spec is Windows 10 64-bit, Intel i5-6600 / AMD Ryzen 5 1600X, 8 GB RAM, GTX 670 / RX 570 / Arc B580, DirectX 11, and 8 GB of storage.
+    eyebrow: System Info
+    facts:
+      - label: OS
+        value: Windows 10 64-bit
+      - label: RAM
+        value: 8 GB
+      - label: GPU
+        value: GTX 670 / RX 570 / Arc B580
+      - label: Storage
+        value: 8 GB
+    related:
+      - beginner-guide
+      - release-info
+    relations:
+      - pageId: beginner-guide
+        type: next-step
+      - pageId: release-info
+        type: related
+    assetType: reference
+    sources:
+      - type: official
+        title: Steam Store Page — System Requirements
+        url: https://store.steampowered.com/app/1575990/Twisted_Tower/
+    changeSummary: Initial release.
+  - id: release-info
+    title: Release Info & Platforms
+    description: Release date, price, platforms, and language support for Twisted Tower.
+    category: game-info
+    slug: release-info
+    source: site-input/pages/release-info.md
+    status: confirmed
+    featured: false
+    sidebarOrder: 2
+    role: supporting
+    intents:
+      - release-date
+      - price
+      - platforms
+      - where-to-buy
+    quickAnswer: Twisted Tower released on Steam on August 18, 2026, priced $14.99 with a 10% launch discount through September 1, 2026. It is currently PC (Windows) only; no console version has been announced.
+    eyebrow: Release Info
+    facts:
+      - label: Release date
+        value: August 18, 2026
+      - label: Price
+        value: $14.99
+      - label: Platform
+        value: PC (Steam)
+      - label: Language
+        value: English
+    related:
+      - system-requirements
+      - beginner-guide
+    relations:
+      - pageId: system-requirements
+        type: next-step
+      - pageId: beginner-guide
+        type: related
+    assetType: reference
+    sources:
+      - type: official
+        title: Steam Store Page
+        url: https://store.steampowered.com/app/1575990/Twisted_Tower/
+      - type: official
+        title: 3D Realms launch announcement (Gematsu)
+        url: https://www.gematsu.com/2026/07/twisted-tower-launches-august-18
+      - type: other
+        title: PlayFront — console status (PC only)
+        url: https://playfront.de/en/bioshock-trifft-biosphaere-horror-twisted-tower-erobert-den-pc/
+    changeSummary: Initial release.
+  - id: weapons-guide
+    title: Toy Weapons Guide
+    description: The officially announced toy-style arsenal and the Ticket-driven upgrade system.
+    category: gameplay
+    slug: weapons-guide
+    source: site-input/pages/weapons-guide.md
+    status: confirmed
+    featured: true
+    sidebarOrder: 1
+    role: core
+    coverAssetId: combat-arena
+    intents:
+      - weapons
+      - weapon-upgrades
+      - tickets
+      - alt-fire
+    quickAnswer: Announced toy weapons include the Whack-a-Mole mallet, rubber-band pistol, dart Tommy Gun, fart shotgun, bubblegum chain gun, sniper slingshot, and skull raygun. Tickets earned in-game buy upgrades at stations, including alternate fire modes.
+    eyebrow: Arsenal
+    facts:
+      - label: Starting weapon
+        value: Twisted Mallet
+      - label: Upgrade currency
+        value: Tickets
+      - label: Weapon theme
+        value: Toys / Carnival
+      - label: Alternate fire
+        value: Unlockable (Alt Fire Fiend)
+    related:
+      - movement-toys
+      - beginner-guide
+    relations:
+      - pageId: beginner-guide
+        type: related
+      - pageId: movement-toys
+        type: related
+    assetType: reference
+    sources:
+      - type: official
+        title: Steam Store Page — toyish arsenal
+        url: https://store.steampowered.com/app/1575990/Twisted_Tower/
+      - type: other
+        title: NoobFeed review — alternate fires and upgrades
+        url: https://www.noobfeed.com/reviews/twisted-tower-review
+    changeSummary: Initial release.
+  - id: movement-toys
+    title: Movement Toys
+    description: "Movement toys confirmed by the official store page and achievements: Harpoon, Fairy Wings, Bouncy Boots, and the Jet Pack."
+    category: gameplay
+    slug: movement-toys
+    source: site-input/pages/movement-toys.md
+    status: confirmed
+    featured: false
+    sidebarOrder: 2
+    role: supporting
+    intents:
+      - movement
+      - traversal
+      - grapple
+      - dash
+      - jump
+    quickAnswer: Confirmed movement toys are the Harpoon, Fairy Wings, Bouncy Boots, and the Twisted Jet Pack. The official store page confirms they enable jumping, dashing, and grappling movement.
+    eyebrow: Movement Tools
+    facts:
+      - label: Confirmed toys
+        value: Harpoon / Fairy Wings / Bouncy Boots / Jet Pack
+      - label: Official mobility
+        value: Jump / Dash / Grapple
+      - label: Related achievements
+        value: Harpoon Hero and more
+    related:
+      - weapons-guide
+      - five-floors
+    relations:
+      - pageId: weapons-guide
+        type: related
+      - pageId: five-floors
+        type: next-step
+    assetType: reference
+    sources:
+      - type: official
+        title: Steam Store Page — toys for jumping, dashing, grappling
+        url: https://store.steampowered.com/app/1575990/Twisted_Tower/
+      - type: official
+        title: Steam Community achievements — official descriptions
+        url: https://steamcommunity.com/stats/1575990/achievements
+    changeSummary: Initial release.
+  - id: five-floors
+    title: The Five Themed Floors
+    description: "The five officially confirmed themed floors: Hotel, Waterpark, Clown Casino, Carnival Forest, and Space Station."
+    category: levels
+    slug: five-floors
+    source: site-input/pages/five-floors.md
+    status: confirmed
+    featured: true
+    sidebarOrder: 1
+    role: core
+    coverAssetId: hero-carnival
+    intents:
+      - levels
+      - floors
+      - locations
+      - world
+    quickAnswer: "Twisted Tower contains five themed floors: Hotel, Waterpark, Clown Casino, Carnival Forest, and Space Station. Official marketing notes that each playthrough can take a different route."
+    eyebrow: The Climb
+    facts:
+      - label: Floors
+        value: "5"
+      - label: Themes
+        value: Hotel / Waterpark / Clown Casino / Carnival Forest / Space Station
+      - label: Route
+        value: Varies per playthrough
+      - label: Summit
+        value: Top of the tower
+    related:
+      - movement-toys
+      - weapons-guide
+      - beginner-guide
+    relations:
+      - pageId: movement-toys
+        type: next-step
+      - pageId: weapons-guide
+        type: related
+      - pageId: beginner-guide
+        type: related
+    assetType: article
+    sources:
+      - type: official
+        title: Steam Store Page — five levels
+        url: https://store.steampowered.com/app/1575990/Twisted_Tower/
+      - type: official
+        title: 3D Realms launch announcement (Gematsu)
+        url: https://www.gematsu.com/2026/07/twisted-tower-launches-august-18
+    changeSummary: Initial release.
+  - id: achievements-guide
+    title: Achievements Guide
+    description: All 18 Twisted Tower Steam achievements with their official descriptions.
+    category: progression
+    slug: achievements-guide
+    source: site-input/pages/achievements-guide.md
+    status: confirmed
+    featured: false
+    sidebarOrder: 1
+    role: supporting
+    intents:
+      - achievements
+      - steam-achievements
+      - completion
+    quickAnswer: Twisted Tower has 18 Steam achievements, including story completion (Charlotte's Hero), finishing in under 4 hours (Speedy Spree), collecting 2,000 Tickets (Ticket Titan), finishing without dying (No-Death Daredevil), and finding every secret area in one run (Secret Safari).
+    eyebrow: Achievements
+    facts:
+      - label: Total achievements
+        value: "18"
+      - label: Story achievement
+        value: Charlotte's Hero
+      - label: Speedrun
+        value: Speedy Spree (under 4 hours)
+      - label: Completion
+        value: Secret Safari
+    related:
+      - adventure-plus
+      - five-floors
+    relations:
+      - pageId: adventure-plus
+        type: next-step
+      - pageId: five-floors
+        type: related
+    assetType: checklist
+    sources:
+      - type: official
+        title: Steam Community achievements
+        url: https://steamcommunity.com/stats/1575990/achievements
+    changeSummary: Initial release.
+  - id: adventure-plus
+    title: Adventure Plus (New Game Plus) Explained
+    description: "The Adventure Plus mode unlocked after your first clear: carry upgrades, open new routes, and face higher difficulty."
+    category: progression
+    slug: adventure-plus
+    source: site-input/pages/adventure-plus.md
+    status: confirmed
+    featured: false
+    sidebarOrder: 2
+    role: supporting
+    intents:
+      - new-game-plus
+      - adventure-plus
+      - replay
+    quickAnswer: Beating the game once unlocks Adventure Plus, which carries your weapon upgrades into a new run, opens alternate routes that were previously blocked, and raises the difficulty.
+    eyebrow: Replay
+    facts:
+      - label: Unlock
+        value: First clear
+      - label: Carries over
+        value: Weapon upgrades
+      - label: New content
+        value: Alternate routes
+      - label: Difficulty
+        value: Higher
+    related:
+      - achievements-guide
+      - five-floors
+    relations:
+      - pageId: achievements-guide
+        type: related
+      - pageId: five-floors
+        type: related
+    assetType: article
+    sources:
+      - type: other
+        title: NoobFeed review — New Game Plus style mode
+        url: https://www.noobfeed.com/reviews/twisted-tower-review
+      - type: official
+        title: Steam Community achievements — Adventure Plus Antic / Plus Mode Pandemonium
+        url: https://steamcommunity.com/stats/1575990/achievements
+    changeSummary: Initial release.
+
+routes:
+  - id: first-time-players
+    eyebrow: New Player Route
+    title: New Player Route
+    description: Pages to read in order before your first serious climb.
+    visualAssetId: interior-amber
+    fastAnswers:
+      - question: Where should I start?
+        answer: Begin with the Beginner's Guide.
+        pageId: beginner-guide
+      - question: Can my PC run it?
+        answer: Check the system requirements page.
+        pageId: system-requirements
+      - question: Which weapon should I use?
+        answer: See the toy weapons guide.
+        pageId: weapons-guide
+    pages:
+      - beginner-guide
+      - system-requirements
+      - weapons-guide
+  - id: reaching-the-top
+    eyebrow: Climbing Route
+    title: Climbing Route
+    description: Understand the floors, movement toys, and post-game content.
+    visualAssetId: carnival-night
+    fastAnswers:
+      - question: How many floors are there?
+        answer: See the five themed floors page.
+        pageId: five-floors
+      - question: What happens after I finish?
+        answer: Adventure Plus unlocks for a second run.
+        pageId: adventure-plus
+      - question: How many achievements are there?
+        answer: 18 total — see the achievements page.
+        pageId: achievements-guide
+    pages:
+      - five-floors
+      - movement-toys
+      - adventure-plus
+      - achievements-guide
+
+homepage:
+  heroBadge: Guide & Wiki
+  primaryCta:
+    label: Start the Beginner's Guide
+    pageId: beginner-guide
+  secondaryCta:
+    label: Browse All Guides
+    anchor: browse-guides
+  statusItems:
+    - label: Release
+      value: 2026-08-18
+    - label: Platform
+      value: PC (Steam)
+    - label: Price
+      value: $14.99
+    - label: Length
+      value: ~4–6 hours
+  popularQuestions:
+    - label: When did Twisted Tower release?
+      pageId: release-info
+    - label: What should I do first?
+      context: Beginner guide → Requirements → Weapons
+      pageId: beginner-guide
+    - label: What are the system requirements?
+      pageId: system-requirements
+    - label: How long is the game?
+      context: Story run ~4–6 hours
+      pageId: beginner-guide
+  startHere:
+    - pageId: beginner-guide
+      label: Beginner
+      badge: Start here
+    - pageId: weapons-guide
+      label: Weapons
+    - pageId: five-floors
+      label: Five Floors
+    - pageId: achievements-guide
+      label: Achievements
+  evidence:
+    title: The Five Floors in Action
+    description: Official Steam screenshots from inside the tower.
+    items:
+      - assetId: floor-hotel
+        caption: Hotel
+        pageId: five-floors
+      - assetId: floor-clown-casino
+        caption: Clown Casino
+        pageId: five-floors
+      - assetId: floor-carnival-forest
+        caption: Carnival Forest
+        pageId: five-floors
+      - assetId: floor-space-station
+        caption: Space Station
+        pageId: five-floors
+
+assets:
+  - id: hero-carnival
+    source: site-input/assets/screenshots/hero-carnival.jpg
+    target: screenshots/hero-carnival.jpg
+    alt: Twisted Tower carnival surroundings lit in warm amber lights
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/e095f51e8c4458b59b37f5171a70447809b0c2b8/ss_e095f51e8c4458b59b37f5171a70447809b0c2b8.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: floor-hotel
+    source: site-input/assets/screenshots/floor-hotel.jpg
+    target: screenshots/floor-hotel.jpg
+    alt: Twisted Tower hotel floor interior with warm lighting
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/ss_7d63ac1664682f4a4ce41e7dcaa7df9c159ba4f2.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: floor-clown-casino
+    source: site-input/assets/screenshots/floor-clown-casino.jpg
+    target: screenshots/floor-clown-casino.jpg
+    alt: Twisted Tower Clown Casino floor glowing with golden lights
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/f960a6d71a339df76568026deba05b218fba6375/ss_f960a6d71a339df76568026deba05b218fba6375.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: floor-carnival-forest
+    source: site-input/assets/screenshots/floor-carnival-forest.jpg
+    target: screenshots/floor-carnival-forest.jpg
+    alt: Twisted Tower Carnival Forest floor with dark green foliage
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/a1663a6dd599c47b4f1dd8e4ddb54b8517b2b162/ss_a1663a6dd599c47b4f1dd8e4ddb54b8517b2b162.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: floor-space-station
+    source: site-input/assets/screenshots/floor-space-station.jpg
+    target: screenshots/floor-space-station.jpg
+    alt: Twisted Tower Space Station floor with neon purple lighting
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/b00ae12fab189755eb822372f65e0e53fc4eaa06/ss_b00ae12fab189755eb822372f65e0e53fc4eaa06.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: combat-arena
+    source: site-input/assets/screenshots/combat-arena.jpg
+    target: screenshots/combat-arena.jpg
+    alt: Twisted Tower combat encounter in an amber-lit arena
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/a66f8cfc957c1ee0f596cc407efcb08e97693769/ss_a66f8cfc957c1ee0f596cc407efcb08e97693769.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: neon-danger
+    source: site-input/assets/screenshots/neon-danger.jpg
+    target: screenshots/neon-danger.jpg
+    alt: Twisted Tower hazard area lit in red neon
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/5b63f1d6e39a48172a31c1a157f5cb137a19b999/ss_5b63f1d6e39a48172a31c1a157f5cb137a19b999.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: interior-amber
+    source: site-input/assets/screenshots/interior-amber.jpg
+    target: screenshots/interior-amber.jpg
+    alt: Twisted Tower interior room in warm amber light
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/2f2ddc837800140677a2310cc6986dc9d11edc22/ss_2f2ddc837800140677a2310cc6986dc9d11edc22.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: carnival-night
+    source: site-input/assets/screenshots/carnival-night.jpg
+    target: screenshots/carnival-night.jpg
+    alt: Twisted Tower carnival rides glowing at night
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/b9527aae86874ccefd86d2d89edccf1de0c1d413/ss_b9527aae86874ccefd86d2d89edccf1de0c1d413.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+  - id: neon-carnival
+    source: site-input/assets/screenshots/neon-carnival.jpg
+    target: screenshots/neon-carnival.jpg
+    alt: Twisted Tower neon-lit carnival attraction
+    sourceUrl: https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1575990/1955548d6cceb3056bb7263e8a0b6b2882c919b1/ss_1955548d6cceb3056bb7263e8a0b6b2882c919b1.1920x1080.jpg?t=1787251359
+    sourceType: store
+    usageStatus: approved
+
+social:
+  defaultImage:
+    asset: screenshots/hero-carnival.jpg
+    alt: Twisted Tower guide and wiki
+
+trust:
+  enabled: true
+  about:
+    enabled: true
+    source: site-input/trust/about.md
+  editorialMethod:
+    enabled: true
+    source: site-input/trust/editorial-method.md
+  privacy:
+    enabled: true
+    source: site-input/trust/privacy.md
+
+# Winner / production sites may enable GA4. Template default stays off.
+analytics:
+  enabled: false

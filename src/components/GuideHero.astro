@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+
+const { entry } = Astro.locals.starlightRoute;
+const cover = entry.data.cover;
+---
+
+{
+	cover && (
+		<div class="gw-guide-hero">
+			<Image
+				src={cover}
+				alt={entry.data.title}
+				width={960}
+				height={540}
+				widths={[480, 720, 960]}
+				sizes="(max-width: 72rem) 100vw, 960px"
+				loading="eager"
+			/>
+		</div>
+	)
+}

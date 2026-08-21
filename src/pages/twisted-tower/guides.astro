@@ -1,0 +1,34 @@
+---
+/**
+ * Formal Guides Index (player-facing Route Map).
+ * /twisted-tower/guides/
+ *
+ * Consumes the formal GameShell + `game.routes` runtime config only.
+ * This page is NOT the Category Index — Categories remain backend/sidebar
+ * browse; this is the player-facing Route Map.
+ */
+import GameShell from '../../components/experience/GameShell.astro';
+import RouteIndex from '../../components/experience/routes/RouteIndex.astro';
+import { game } from '../../config/game';
+import { ui } from '../../lib/ui';
+import { experienceNav } from '../../lib/experience-nav';
+import '../../styles/routes.css';
+
+const t = ui();
+const { nav, footerLinks, homeHref, guidesHref } = experienceNav();
+const routes = game.routes ?? [];
+---
+
+<GameShell
+	title={`${t.allGuides} — ${game.title}`}
+	description={game.description}
+	canonical={new URL(guidesHref, game.siteUrl).href}
+	siteTitle={game.shortName}
+	homeHref={homeHref}
+	nav={nav}
+	activePath={guidesHref}
+	footerLinks={footerLinks}
+	footerText={game.title}
+>
+	<RouteIndex routes={routes} />
+</GameShell>

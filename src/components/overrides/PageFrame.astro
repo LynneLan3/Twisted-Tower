@@ -1,0 +1,38 @@
+---
+/**
+ * PageFrame override — on Experience Guide pages and the formal Homepage,
+ * drop the fixed Starlight header/sidebar frame and render the sticky
+ * GameShell top bar directly above a full-bleed content frame. Category
+ * Landings, trust pages, 404, and fallback docs keep the default frame.
+ */
+import Default from '@astrojs/starlight/components/PageFrame.astro';
+import { isExperienceGuide, isExperienceHomepage } from '../../lib/experience-guide';
+
+const isHome = isExperienceHomepage(Astro.locals.starlightRoute.entry);
+const isExperience = isExperienceGuide(
+	Astro.locals.starlightRoute.entry,
+	Astro.url.pathname,
+);
+---
+
+{
+	isHome ? (
+		<>
+			<slot name="header" />
+			<div class="exp-home-frame">
+				<slot />
+			</div>
+		</>
+	) : isExperience ? (
+		<>
+			<slot name="header" />
+			<div class="exp-guide-frame">
+				<slot />
+			</div>
+		</>
+	) : (
+		<Default>
+			<slot />
+		</Default>
+	)
+}

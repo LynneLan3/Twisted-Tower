@@ -1,0 +1,56 @@
+---
+import { game } from '../config/game';
+
+const analytics = game.analytics;
+const enabled = Boolean(analytics?.enabled && import.meta.env.PROD);
+const siteHost = enabled ? new URL(game.siteUrl).hostname : '';
+const config =
+	enabled && analytics
+		? {
+				measurementId: analytics.measurementId,
+				siteHost,
+				trackOutbound: analytics.trackOutbound,
+			}
+		: null;
+---
+
+{
+	config && (
+		<script type="application/json" id="gw-analytics-config" set:html={JSON.stringify(config)} />
+	)
+}
+
+{
+	config && analytics?.provider === 'ga4' && (
+		<script is:inline define:vars={{ measurementId: config.measurementId, siteHost: config.siteHost }}>
+			(function () {
+				try {
+					if (location.hostname !== siteHost) return;
+				} catch (error) {
+					return;
+				}
+				window.dataLayer = window.dataLayer || [];
+				window.gtag =
+					window.gtag ||
+					function () {
+						window.dataLayer.push(arguments);
+					};
+				var script = document.createElement('script');
+				script.async = true;
+				script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+				document.head.appendChild(script);
+				window.gtag('js', new Date());
+				window.gtag('config', measurementId);
+			})();
+		</script>
+	)
+}
+
+{
+	config?.trackOutbound && (
+		<script>
+			import { attachOutboundTracking } from '../lib/outbound';
+			attachOutboundTracking();
+		</script>
+	)
+}

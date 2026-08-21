@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { resolveGameAsset } from '../lib/assets';
+import { ui } from '../lib/ui';
+
+const t = ui();
+const entry = Astro.locals.starlightRoute.entry;
+const configured = entry.data.evidence ?? [];
+const items = configured.map((item, index) => {
+	const image = resolveGameAsset(item.asset, `frontmatter.evidence[${index}].asset`);
+	if (!image) {
+		throw new Error(`frontmatter.evidence[${index}].asset resolved empty; omit the item or fix the path.`);
+	}
+	return {
+		image,
+		alt: item.alt,
+		caption: item.caption,
+		sourceType: item.sourceType,
+		sourceUrl: item.sourceUrl,
+	};
+});
+---
+
+{
+	items.length > 0 && (
+		<section class="gw-guide-evidence" aria-labelledby="gw-guide-evidence-heading">
+			<h2 id="gw-guide-evidence-heading">{t.guideEvidenceHeading}</h2>
+			<ul>
+				{items.map((item) => (
+					<li>
+						<figure>
+							<Image
+								src={item.image}
+								alt={item.alt}
+								width={1280}
+								height={720}
+								sizes="(min-width: 50em) 48rem, 100vw"
+								loading="lazy"
+							/>
+							<figcaption>
+								{item.caption && <span class="gw-guide-evidence__caption">{item.caption}</span>}
+								<span class="gw-guide-evidence__meta">
+									<span class="gw-guide-evidence__source">{t.evidenceSourceTypes[item.sourceType]}</span>
+									{item.sourceUrl && (
+										<a href={item.sourceUrl} rel="noopener noreferrer" target="_blank" data-outbound-kind="evidence">
+											{t.evidenceSourceLink}
+										</a>
+									)}
+								</span>
+							</figcaption>
+						</figure>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+}
