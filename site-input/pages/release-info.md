@@ -18,5 +18,5 @@ Official release and platform information for Twisted Tower, covering launch dat
 
 - **Will there be a console version?** The developer is currently focused on PC and has not announced console plans (source: PlayFront relaying the developer's statement).
 - **Are other languages supported?** The store page currently lists English only.
-- **What are the system requirements?** See the [system requirements page](/twisted-tower/system-requirements/).
-- **How long is the game?** A story run is roughly 4–6 hours; see the [beginner's guide](/twisted-tower/beginner-guide/).
+- **What are the system requirements?** See the [system requirements page](/system-requirements/).
+- **How long is the game?** A story run is roughly 4–6 hours; see the [beginner's guide](/beginner-guide/).

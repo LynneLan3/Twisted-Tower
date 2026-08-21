@@ -2,7 +2,7 @@
 title: "Release Info & Platforms"
 description: "Release date, price, platforms, and language support for Twisted Tower."
 category: game-info
-slug: twisted-tower/release-info
+slug: release-info
 status: confirmed
 featured: false
 role: supporting
@@ -16,14 +16,14 @@ intents:
   - where-to-buy
 quickAnswer: "Twisted Tower released on Steam on August 18, 2026, priced $14.99 with a 10% launch discount through September 1, 2026. It is currently PC (Windows) only; no console version has been announced."
 related:
-  - twisted-tower/system-requirements
-  - twisted-tower/beginner-guide
+  - system-requirements
+  - beginner-guide
 relations:
   -
-    slug: twisted-tower/system-requirements
+    slug: system-requirements
     type: next-step
   -
-    slug: twisted-tower/beginner-guide
+    slug: beginner-guide
     type: related
 sources:
   -
@@ -80,5 +80,5 @@ Official release and platform information for Twisted Tower, covering launch dat
 
 - **Will there be a console version?** The developer is currently focused on PC and has not announced console plans (source: PlayFront relaying the developer's statement).
 - **Are other languages supported?** The store page currently lists English only.
-- **What are the system requirements?** See the [system requirements page](/twisted-tower/system-requirements/).
-- **How long is the game?** A story run is roughly 4–6 hours; see the [beginner's guide](/twisted-tower/beginner-guide/).
+- **What are the system requirements?** See the [system requirements page](/system-requirements/).
+- **How long is the game?** A story run is roughly 4–6 hours; see the [beginner's guide](/beginner-guide/).

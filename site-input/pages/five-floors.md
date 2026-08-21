@@ -37,6 +37,6 @@ The following are suggestions compiled from community completion runs:
 - **Follow named attractions on the forest floor**: community run records name Thundertracks and the Footmother Maze as reliable landmarks — finishing one attraction's closed loop beats wandering.
 - **Watch for "Game Saved" near the finale**: if a large room near the top won't open, check the walls for leftover enemies, switches, or pickups first.
 
-(Sources: community completion runs; see the [editorial method](/twisted-tower/editorial-method/).)
+(Sources: community completion runs; see the [editorial method](/editorial-method/).)
 
-> **Evidence boundary**: per-floor puzzle solutions, area enemy lists, and secret locations are not officially confirmed, so this page does not give step-by-step completion; for opening guidance see the [beginner's guide](/twisted-tower/beginner-guide/).
+> **Evidence boundary**: per-floor puzzle solutions, area enemy lists, and secret locations are not officially confirmed, so this page does not give step-by-step completion; for opening guidance see the [beginner's guide](/beginner-guide/).

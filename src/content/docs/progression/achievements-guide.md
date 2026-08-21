@@ -2,7 +2,7 @@
 title: Achievements Guide
 description: All 18 Twisted Tower Steam achievements with their official descriptions.
 category: progression
-slug: twisted-tower/achievements-guide
+slug: achievements-guide
 status: confirmed
 featured: false
 role: supporting
@@ -15,14 +15,14 @@ intents:
   - completion
 quickAnswer: "Twisted Tower has 18 Steam achievements, including story completion (Charlotte's Hero), finishing in under 4 hours (Speedy Spree), collecting 2,000 Tickets (Ticket Titan), finishing without dying (No-Death Daredevil), and finding every secret area in one run (Secret Safari)."
 related:
-  - twisted-tower/adventure-plus
-  - twisted-tower/five-floors
+  - adventure-plus
+  - five-floors
 relations:
   -
-    slug: twisted-tower/adventure-plus
+    slug: adventure-plus
     type: next-step
   -
-    slug: twisted-tower/five-floors
+    slug: five-floors
     type: related
 sources:
   -
@@ -96,9 +96,9 @@ Twisted Tower has **18 Steam achievements** in total. The names and descriptions
 The following is what the official descriptions determine, without extra spoilers:
 
 - **Story progress achievements**: First Foe, First Floor Frolic, and Charlotte's Hero unlock naturally by playing through.
-- **Movement toy achievements**: unlock when you collect the matching toy — see the [movement toys page](/twisted-tower/movement-toys/).
+- **Movement toy achievements**: unlock when you collect the matching toy — see the [movement toys page](/movement-toys/).
 - **Speedy Spree**: requires finishing in under 4 hours in one run; best attempted after you know the route from a first clear.
-- **Ticket Titan (2,000 Tickets) and Weapon Wizard (max every weapon)**: both need a large Ticket income, so they're easiest to finish in a second run — see [Adventure Plus](/twisted-tower/adventure-plus/).
+- **Ticket Titan (2,000 Tickets) and Weapon Wizard (max every weapon)**: both need a large Ticket income, so they're easiest to finish in a second run — see [Adventure Plus](/adventure-plus/).
 - **Secret Safari**: requires finding every secret area in a single playthrough; try Secret Spectacle first to learn where hidden areas live.
 - **No-Death Daredevil**: a zero-death run — a high-difficulty challenge, best attempted on a powered-up Adventure Plus run.
 

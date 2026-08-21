@@ -2,7 +2,7 @@
 title: "Adventure Plus (New Game Plus) Explained"
 description: "The Adventure Plus mode unlocked after your first clear: carry upgrades, open new routes, and face higher difficulty."
 category: progression
-slug: twisted-tower/adventure-plus
+slug: adventure-plus
 status: confirmed
 featured: false
 role: supporting
@@ -15,14 +15,14 @@ intents:
   - replay
 quickAnswer: "Beating the game once unlocks Adventure Plus, which carries your weapon upgrades into a new run, opens alternate routes that were previously blocked, and raises the difficulty."
 related:
-  - twisted-tower/achievements-guide
-  - twisted-tower/five-floors
+  - achievements-guide
+  - five-floors
 relations:
   -
-    slug: twisted-tower/achievements-guide
+    slug: achievements-guide
     type: related
   -
-    slug: twisted-tower/five-floors
+    slug: five-floors
     type: related
 sources:
   -
@@ -70,7 +70,7 @@ Twisted Tower offers a New Game Plus-style mode after your first clear, official
 ## What to do in a second run
 
 - **Finish the expensive achievements**: maxing every weapon (Weapon Wizard) and hoarding 2,000 Tickets (Ticket Titan) need a large Ticket income — carrying over upgrades into a second run makes them far more efficient.
-- **Attempt the high-difficulty achievements**: No-Death Daredevil (zero deaths) and Secret Safari (every secret in one run) are more practical with a fuller toolkit — see the [achievements page](/twisted-tower/achievements-guide/).
+- **Attempt the high-difficulty achievements**: No-Death Daredevil (zero deaths) and Secret Safari (every secret in one run) are more practical with a fuller toolkit — see the [achievements page](/achievements-guide/).
 - **Experience the alternate routes**: the routes Adventure Plus opens, combined with the "unique path every playthrough" design, reward re-exploring each floor.
 
 > **Evidence boundary**: the exact unlock flow, difficulty tier details, and run-to-run differences of Adventure Plus are not fully documented by the developer; this page only states what official achievement descriptions and published launch reviews confirm.

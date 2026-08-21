@@ -1,18 +1,11 @@
 ---
-/**
- * Formal dynamic Route Hub.
- * /twisted-tower/routes/{routeId}/
- *
- * All Route Hub pages are generated from `game.routes` via getStaticPaths —
- * no per-route Astro files, no runtime 404 lookup. Pages exist only for routes
- * in the runtime config.
- */
-import GameShell from '../../../components/experience/GameShell.astro';
-import RouteHub from '../../../components/experience/routes/RouteHub.astro';
-import { game } from '../../../config/game';
-import type { GameRoute } from '../../../config/game';
-import { experienceNav } from '../../../lib/experience-nav';
-import '../../../styles/routes.css';
+/** Formal dynamic Route Hub. */
+import GameShell from '../../components/experience/GameShell.astro';
+import RouteHub from '../../components/experience/routes/RouteHub.astro';
+import { game } from '../../config/game';
+import type { GameRoute } from '../../config/game';
+import { experienceNav } from '../../lib/experience-nav';
+import '../../styles/routes.css';
 
 export function getStaticPaths() {
 	return (game.routes ?? []).map((route) => ({

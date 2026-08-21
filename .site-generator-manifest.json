@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "templateVersion": "2.0.0",
   "generatorVersion": "1.0.0",
-  "specHash": "82bd2c7afb1324d322c10b99dade4cb5c3beab3448125fd39dd274955ad9f620",
+  "specHash": "2e8553ff207f5f1fe5f11118c48c0228dfbd055cb7c7f826e5402b3668edd709",
   "siteId": "twisted-tower",
   "createdFromSpec": "site-spec.yaml",
   "managedFiles": [
@@ -68,52 +68,52 @@
     },
     {
       "path": "src/config/site.generated.ts",
-      "sha256": "f5c3e705658ff4de973088ff74ca7784994603c08ee92d5353820141acbf7fea",
+      "sha256": "f01385e4315c565baf1c55bb7f175b0a0ca0c53b0fe18ba38ef582483837697f",
       "kind": "config"
     },
     {
       "path": "src/content/docs/game-info/release-info.md",
-      "sha256": "f760bdf10be47f45e81abe00a0d1e44192993d537f8053b7137ebaf5a2e9dfaf",
+      "sha256": "eecd2ffaa5f84c86eacdc86cdcfab429a8b1405785de9b9b52df8f0c407869e3",
       "kind": "page"
     },
     {
       "path": "src/content/docs/game-info/system-requirements.md",
-      "sha256": "6418d75e5eb53e72d080b55e8948881332c5cb5ae6ea023f595629283d510fb7",
+      "sha256": "baac0bfd78e68ee76e5cd21af2ec14c3af63fef69829178dce834dc10a8bc943",
       "kind": "page"
     },
     {
       "path": "src/content/docs/gameplay/movement-toys.md",
-      "sha256": "febed1a7bcb43e4e3031c2b40d09934741b046f8578deba100a09a03753902ca",
+      "sha256": "84627de801868312ad0f52f3e0f3eb78c463ef57df1425688b7bd3a103ffc377",
       "kind": "page"
     },
     {
       "path": "src/content/docs/gameplay/weapons-guide.md",
-      "sha256": "601f625e716fd6061f96f50524933c8b5fc7566be8ffe11fb56a86ec64fe4b42",
+      "sha256": "1c1c0742f5e720205aa8f9cf73fe67772ac44731f2ffce9e761e3aec93a2f59b",
       "kind": "page"
     },
     {
       "path": "src/content/docs/getting-started/beginner-guide.md",
-      "sha256": "54b90a6537b4893306433bea03bdd566ea42b878c471c648f51f641c8d048c99",
+      "sha256": "630bafd9d4d367760fe4bd4f2ece0affc2a5202dde259d8653e9c154432b97c7",
       "kind": "page"
     },
     {
       "path": "src/content/docs/index.mdx",
-      "sha256": "c9f32edffd91c787564100d06f2ee212ef6fb0cf84fbdd23bfcfac8948ebb716",
+      "sha256": "cc0942c8295c97126e7fbbf36af7c1548f78ca77205ae84ee6b9dbe0338978be",
       "kind": "hub"
     },
     {
       "path": "src/content/docs/levels/five-floors.md",
-      "sha256": "cc806b8779e77ba8857ba956490195ff9c241cc1c13fc380d6c0660f51e6e440",
+      "sha256": "e28a272ecb844ecea81937702b3aa945ea6ba7a05937ddb7e610987b5a99241a",
       "kind": "page"
     },
     {
       "path": "src/content/docs/progression/achievements-guide.md",
-      "sha256": "d6d536d419973cde3982f03ed45d73326a6d332c47e95664cfae7cfb1ae908cb",
+      "sha256": "71d07930159a8b00f7b7d5bbf0f6694e148529cb18205644ce85bacd4c43ea93",
       "kind": "page"
     },
     {
       "path": "src/content/docs/progression/adventure-plus.md",
-      "sha256": "578f75eb47ca03a1ad2ae26c34b0408ce2ce9ebf3a468e06e960011d561c8921",
+      "sha256": "3df3c24569ede94de3de80871ddf5044481874f191e1108c2325510f45568ec9",
       "kind": "page"
     },
     {

@@ -2,7 +2,7 @@
 title: Toy Weapons Guide
 description: The officially announced toy-style arsenal and the Ticket-driven upgrade system.
 category: gameplay
-slug: twisted-tower/weapons-guide
+slug: weapons-guide
 status: confirmed
 featured: true
 role: core
@@ -16,14 +16,14 @@ intents:
   - alt-fire
 quickAnswer: "Announced toy weapons include the Whack-a-Mole mallet, rubber-band pistol, dart Tommy Gun, fart shotgun, bubblegum chain gun, sniper slingshot, and skull raygun. Tickets earned in-game buy upgrades at stations, including alternate fire modes."
 related:
-  - twisted-tower/movement-toys
-  - twisted-tower/beginner-guide
+  - movement-toys
+  - beginner-guide
 relations:
   -
-    slug: twisted-tower/beginner-guide
+    slug: beginner-guide
     type: related
   -
-    slug: twisted-tower/movement-toys
+    slug: movement-toys
     type: related
 sources:
   -
@@ -93,4 +93,4 @@ The following are guide suggestions rather than official mechanics:
 - **Read the upgrade card before buying**: upgrade stations show the weapon name, the upgrade (damage / magazine / alternate fire), and the Ticket price — confirm it's the item you're using and actually need.
 - **Verify after buying**: return to the arsenal to confirm the upgrade applied before moving on.
 
-(Sources: community completion runs and published launch reviews; see the [editorial method](/twisted-tower/editorial-method/).)
+(Sources: community completion runs and published launch reviews; see the [editorial method](/editorial-method/).)

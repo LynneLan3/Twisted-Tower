@@ -2,7 +2,7 @@
 title: The Five Themed Floors
 description: "The five officially confirmed themed floors: Hotel, Waterpark, Clown Casino, Carnival Forest, and Space Station."
 category: levels
-slug: twisted-tower/five-floors
+slug: five-floors
 status: confirmed
 featured: true
 role: core
@@ -16,18 +16,18 @@ intents:
   - world
 quickAnswer: "Twisted Tower contains five themed floors: Hotel, Waterpark, Clown Casino, Carnival Forest, and Space Station. Official marketing notes that each playthrough can take a different route."
 related:
-  - twisted-tower/movement-toys
-  - twisted-tower/weapons-guide
-  - twisted-tower/beginner-guide
+  - movement-toys
+  - weapons-guide
+  - beginner-guide
 relations:
   -
-    slug: twisted-tower/movement-toys
+    slug: movement-toys
     type: next-step
   -
-    slug: twisted-tower/weapons-guide
+    slug: weapons-guide
     type: related
   -
-    slug: twisted-tower/beginner-guide
+    slug: beginner-guide
     type: related
 sources:
   -
@@ -100,6 +100,6 @@ The following are suggestions compiled from community completion runs:
 - **Follow named attractions on the forest floor**: community run records name Thundertracks and the Footmother Maze as reliable landmarks — finishing one attraction's closed loop beats wandering.
 - **Watch for "Game Saved" near the finale**: if a large room near the top won't open, check the walls for leftover enemies, switches, or pickups first.
 
-(Sources: community completion runs; see the [editorial method](/twisted-tower/editorial-method/).)
+(Sources: community completion runs; see the [editorial method](/editorial-method/).)
 
-> **Evidence boundary**: per-floor puzzle solutions, area enemy lists, and secret locations are not officially confirmed, so this page does not give step-by-step completion; for opening guidance see the [beginner's guide](/twisted-tower/beginner-guide/).
+> **Evidence boundary**: per-floor puzzle solutions, area enemy lists, and secret locations are not officially confirmed, so this page does not give step-by-step completion; for opening guidance see the [beginner's guide](/beginner-guide/).

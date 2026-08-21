@@ -4,9 +4,10 @@ mode: generated-site
 
 site:
   id: twisted-tower
+  mode: standalone
   locale: en
   siteUrl: https://twisted-tower.vercel.app
-  hubPath: /twisted-tower/
+  hubPath: /
   title: Twisted Tower Guide & Wiki
   shortName: Twisted Tower
   description: "Twisted Tower guide and wiki: release info, system requirements, toy weapons, the five themed floors, achievements, and Adventure Plus details."

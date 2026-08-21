@@ -2,7 +2,7 @@
 title: System Requirements
 description: Minimum and recommended PC specifications for Twisted Tower.
 category: game-info
-slug: twisted-tower/system-requirements
+slug: system-requirements
 status: confirmed
 featured: false
 role: supporting
@@ -15,14 +15,14 @@ intents:
   - minimum-requirements
 quickAnswer: "The minimum spec is Windows 10 64-bit, Intel i5-6600 / AMD Ryzen 5 1600X, 8 GB RAM, GTX 670 / RX 570 / Arc B580, DirectX 11, and 8 GB of storage."
 related:
-  - twisted-tower/beginner-guide
-  - twisted-tower/release-info
+  - beginner-guide
+  - release-info
 relations:
   -
-    slug: twisted-tower/beginner-guide
+    slug: beginner-guide
     type: next-step
   -
-    slug: twisted-tower/release-info
+    slug: release-info
     type: related
 sources:
   -

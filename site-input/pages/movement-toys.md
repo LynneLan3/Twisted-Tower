@@ -27,6 +27,6 @@ The following are suggestions compiled from community completion runs, not offic
 - **Check whether a toy is this floor's progress condition**: some movement toys unlock the floor's elevator — after grabbing one, recheck high ledges and gaps you couldn't reach before; others are optional collectibles that don't block the story.
 - **Combine toys**: grapple, dash, and jump together reach some upper platforms and hidden areas — look up while exploring.
 
-(Sources: community completion runs; see the [editorial method](/twisted-tower/editorial-method/).)
+(Sources: community completion runs; see the [editorial method](/editorial-method/).)
 
-> **Evidence boundary**: exact pickup locations and feel details for each toy are not officially confirmed, and third-party guides disagree, so this page does not give per-toy locations; for floor structure, see [the five themed floors](/twisted-tower/five-floors/).
+> **Evidence boundary**: exact pickup locations and feel details for each toy are not officially confirmed, and third-party guides disagree, so this page does not give per-toy locations; for floor structure, see [the five themed floors](/five-floors/).

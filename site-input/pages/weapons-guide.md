@@ -34,4 +34,4 @@ The following are guide suggestions rather than official mechanics:
 - **Read the upgrade card before buying**: upgrade stations show the weapon name, the upgrade (damage / magazine / alternate fire), and the Ticket price — confirm it's the item you're using and actually need.
 - **Verify after buying**: return to the arsenal to confirm the upgrade applied before moving on.
 
-(Sources: community completion runs and published launch reviews; see the [editorial method](/twisted-tower/editorial-method/).)
+(Sources: community completion runs and published launch reviews; see the [editorial method](/editorial-method/).)
