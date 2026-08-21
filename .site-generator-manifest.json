@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "templateVersion": "2.0.0",
   "generatorVersion": "1.0.0",
-  "specHash": "2e8553ff207f5f1fe5f11118c48c0228dfbd055cb7c7f826e5402b3668edd709",
+  "specHash": "2d8d38d11b2021dd77f7fd06723ec8190228387b150b7de82d172f199dfd7ae4",
   "siteId": "twisted-tower",
   "createdFromSpec": "site-spec.yaml",
   "managedFiles": [
