@@ -2,10 +2,15 @@
   "schemaVersion": 1,
   "templateVersion": "2.0.0",
   "generatorVersion": "1.0.0",
-  "specHash": "2d8d38d11b2021dd77f7fd06723ec8190228387b150b7de82d172f199dfd7ae4",
+  "specHash": "179931974ecf04dddb05c669b0a46b01d8a400cf35f778e68aa2ffd099e0b45c",
   "siteId": "twisted-tower",
   "createdFromSpec": "site-spec.yaml",
   "managedFiles": [
+    {
+      "path": "public/4c4190d2-2ba4-43af-b7ad-cbd39298198d.txt",
+      "sha256": "82cb83e24f97bd4773ce3c0b8aba113db02347591380b8d8a6644843565b5f8e",
+      "kind": "other"
+    },
     {
       "path": "public/b0d9c753-a3cc-4f70-a71a-eb2d6e70c489.txt",
       "sha256": "4a0f84eface9b2a4c0ce9585eb10b578e63b2424918dae540aea5abdaa06516c",
@@ -63,12 +68,12 @@
     },
     {
       "path": "src/config/indexnow-key.json",
-      "sha256": "733127c7050ccc5027240d16a87778c86ab77709e8e8e7249433525ff8f3365d",
+      "sha256": "4a3c8482287bbbb510724c5958a06246acb45a279fba5616671dbd0b89c00ba4",
       "kind": "config"
     },
     {
       "path": "src/config/site.generated.ts",
-      "sha256": "f01385e4315c565baf1c55bb7f175b0a0ca0c53b0fe18ba38ef582483837697f",
+      "sha256": "798e3c471953f2d2150a9579e3488ce4abc29e865c9a9d05f87c51734f7660e2",
       "kind": "config"
     },
     {

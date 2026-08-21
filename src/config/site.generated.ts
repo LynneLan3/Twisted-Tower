@@ -11,7 +11,7 @@ export const siteConfig: GameConfig = {
 	title: "Twisted Tower Guide & Wiki",
 	description: "Twisted Tower guide and wiki: release info, system requirements, toy weapons, the five themed floors, achievements, and Adventure Plus details.",
 	tagline: "A first-person horror-action shooter set in an abandoned 1950s amusement park. Climb the tower, fight, solve puzzles, and rescue the one you love.",
-	siteUrl: "https://twisted-tower.vercel.app",
+	siteUrl: "https://twisted-tower-nine.vercel.app",
 	hubPath: "/",
 	hubTitle: "Twisted Tower Guide & Wiki",
 	locale: "en",

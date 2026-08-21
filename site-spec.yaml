@@ -6,7 +6,7 @@ site:
   id: twisted-tower
   mode: standalone
   locale: en
-  siteUrl: https://twisted-tower.vercel.app
+  siteUrl: https://twisted-tower-nine.vercel.app
   hubPath: /
   title: Twisted Tower Guide & Wiki
   shortName: Twisted Tower
@@ -19,7 +19,7 @@ deployment:
   orgId: "team_yAOizMTSVuT0RJATgFdAlQuG"
   projectId: "prj_Kg0pqBvRqK2X40WhVDl3BLntaPGj"
   projectName: "twisted-tower"
-  productionUrl: ""
+  productionUrl: "https://twisted-tower-nine.vercel.app"
   productionBranch: ""
 
 game:
