@@ -40,6 +40,7 @@ function seedMinimalTemplate(dir: string, opts?: { repositoryId?: string | null;
 	const files: Record<string, string> = {
 		'TEMPLATE_VERSION': '1.0.0\n',
 		'AGENTS.md': '# AGENTS\n',
+		'AI_PROJECT_RULES.md': '# AI PROJECT RULES\n',
 		'.agents/skills/create-hotword-wiki/SKILL.md': '---\nname: create-hotword-wiki\n---\n',
 		'scripts/generate-site.ts': 'export {};\n',
 		'scripts/validate-site.mjs': 'console.log("ok");\n',
@@ -193,6 +194,56 @@ test('5. remote pointing at another repo → fail, no content-marker fallback', 
 	}
 });
 
+test('5.1 REPOSITORY_ID marker defines the expected generated-site identity', () => {
+	const dir = tmpRoot();
+	try {
+		const repositoryId = 'LynneLan3/generated-site';
+		seedMinimalTemplate(dir, { repositoryId });
+		initGitRepo(dir, 'feat/generated-site');
+		git(dir, ['remote', 'add', 'origin', `https://github.com/${repositoryId}.git`]);
+		const result = verifyRepoContext(dir);
+		assert.equal(result.ok, true);
+		assert.equal(result.expectedRepositoryId, repositoryId);
+		assert.equal(result.verifiedRepositoryId, repositoryId);
+		assert.equal(result.identityMode, 'remote-verified');
+	} finally {
+		rmSync(dir, { recursive: true, force: true });
+	}
+});
+
+test('5.2 generated-site identity does not require template-only files', () => {
+	const dir = tmpRoot();
+	try {
+		const repositoryId = 'LynneLan3/generated-site';
+		seedMinimalTemplate(dir, {
+			repositoryId,
+			omit: ['TEMPLATE_VERSION', 'AGENTS.md', '.agents/skills/create-hotword-wiki/SKILL.md', 'site-spec.example.yaml'],
+		});
+		initGitRepo(dir, 'feat/generated-site');
+		git(dir, ['remote', 'add', 'origin', `https://github.com/${repositoryId}.git`]);
+		const result = verifyRepoContext(dir);
+		assert.equal(result.ok, true);
+		assert.equal(result.verifiedRepositoryId, repositoryId);
+	} finally {
+		rmSync(dir, { recursive: true, force: true });
+	}
+});
+
+test('5.3 generated-site identity requires local AI project rules', () => {
+	const dir = tmpRoot();
+	try {
+		const repositoryId = 'LynneLan3/generated-site';
+		seedMinimalTemplate(dir, { repositoryId, omit: ['AI_PROJECT_RULES.md'] });
+		initGitRepo(dir, 'feat/generated-site');
+		git(dir, ['remote', 'add', 'origin', `https://github.com/${repositoryId}.git`]);
+		const result = verifyRepoContext(dir);
+		assert.equal(result.ok, false);
+		assert.ok(result.errors.some((error) => /Missing required path: AI_PROJECT_RULES.md/.test(error)));
+	} finally {
+		rmSync(dir, { recursive: true, force: true });
+	}
+});
+
 test('6. no remote + missing REPOSITORY_ID → fail', () => {
 	const dir = tmpRoot();
 	try {
@@ -206,14 +257,17 @@ test('6. no remote + missing REPOSITORY_ID → fail', () => {
 	}
 });
 
-test('7. no remote + wrong REPOSITORY_ID → fail', () => {
+test('7. no remote + generated-site REPOSITORY_ID → marker verification passes', () => {
 	const dir = tmpRoot();
 	try {
-		seedMinimalTemplate(dir, { repositoryId: 'SomeoneElse/wrong-repo' });
+		const repositoryId = 'SomeoneElse/generated-site';
+		seedMinimalTemplate(dir, { repositoryId });
 		initGitRepo(dir, 'work');
 		const result = verifyRepoContext(dir);
-		assert.equal(result.ok, false);
-		assert.ok(result.errors.some((error) => /does not match the expected repository/i.test(error)));
+		assert.equal(result.ok, true);
+		assert.equal(result.expectedRepositoryId, repositoryId);
+		assert.equal(result.verifiedRepositoryId, repositoryId);
+		assert.equal(result.identityMode, 'content-marker-verified');
 	} finally {
 		rmSync(dir, { recursive: true, force: true });
 	}
@@ -350,7 +404,11 @@ test('current repository context passes using the available identity mode', () =
 		expectedMode,
 		`identity mode mismatch (${detail})`,
 	);
-	assert.equal(result.verifiedRepositoryId, EXPECTED_REPOSITORY_ID, detail);
+	assert.equal(
+		result.verifiedRepositoryId,
+		readFileSync(path.join(ROOT, 'REPOSITORY_ID'), 'utf8').trim(),
+		detail,
+	);
 
 	if (hasRemote) {
 		assert.equal(result.sourceBranchIndependentlyVerifiable, true, detail);

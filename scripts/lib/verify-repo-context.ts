@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
+/** Default marker value shipped by the template repository. */
 export const EXPECTED_REPOSITORY_ID = 'LynneLan3/game-wiki-starter';
 export const REPOSITORY_ID_FILENAME = 'REPOSITORY_ID';
 
@@ -53,6 +54,7 @@ export interface RepoContextResult {
 const REQUIRED_STRUCTURE = [
 	'TEMPLATE_VERSION',
 	'AGENTS.md',
+	'AI_PROJECT_RULES.md',
 	'.agents/skills/create-hotword-wiki/SKILL.md',
 	'scripts/generate-site.ts',
 	'scripts/validate-site.mjs',
@@ -120,11 +122,23 @@ export function normalizeGitHubRepositoryId(remoteUrl: string): string | null {
 function readRepositoryMarker(rootDir: string): string | null {
 	const file = path.join(rootDir, REPOSITORY_ID_FILENAME);
 	if (!existsSync(file)) return null;
-	return readFileSync(file, 'utf8').trim();
+	const marker = readFileSync(file, 'utf8').trim();
+	return marker || null;
 }
 
-function assertRequiredStructure(rootDir: string, errors: string[]): void {
-	for (const rel of REQUIRED_STRUCTURE) {
+function assertRequiredStructure(rootDir: string, errors: string[], repositoryId: string | null): void {
+	const required =
+		repositoryId === EXPECTED_REPOSITORY_ID
+			? REQUIRED_STRUCTURE
+			: REQUIRED_STRUCTURE.filter(
+					(rel) =>
+						rel !== 'TEMPLATE_VERSION' &&
+						rel !== 'AGENTS.md' &&
+						rel !== '.agents/skills/create-hotword-wiki/SKILL.md' &&
+						rel !== 'site-spec.example.yaml',
+				);
+
+	for (const rel of required) {
 		if (!existsSync(path.join(rootDir, rel))) {
 			errors.push(`Missing required path: ${rel}`);
 		}
@@ -202,9 +216,10 @@ function listRemotes(rootDir: string): Array<{ name: string; url: string }> {
 export function verifyRepoContext(rootDir: string): RepoContextResult {
 	const warnings: string[] = [];
 	const errors: string[] = [];
-	const expectedRepositoryId = EXPECTED_REPOSITORY_ID;
+	const repositoryMarker = readRepositoryMarker(rootDir);
+	const expectedRepositoryId = repositoryMarker ?? EXPECTED_REPOSITORY_ID;
 
-	assertRequiredStructure(rootDir, errors);
+	assertRequiredStructure(rootDir, errors, repositoryMarker);
 	const branchInfo = readWorkBranchAndHead(rootDir);
 	errors.push(...branchInfo.errors);
 
@@ -221,14 +236,24 @@ export function verifyRepoContext(rootDir: string): RepoContextResult {
 			errors.push(
 				`Unable to normalize Git remote URL to a GitHub repository id: ${origin.url}`,
 			);
-		} else if (normalized !== expectedRepositoryId) {
+		} else if (repositoryMarker === null) {
+			errors.push(
+				[
+					'Git remote is present but REPOSITORY_ID marker is missing.',
+					`  field: ${REPOSITORY_ID_FILENAME}`,
+					`  value: null`,
+					`  location: ${REPOSITORY_ID_FILENAME}`,
+					'  fix: Add REPOSITORY_ID with the exact GitHub owner/repository identity.',
+				].join('\n'),
+			);
+		} else if (normalized !== repositoryMarker) {
 			errors.push(
 				[
 					'Git remote points at a different repository.',
 					`  field: remote`,
 					`  value: ${JSON.stringify(origin.url)}`,
 					`  location: git remote (${origin.name})`,
-					`  fix: Use LynneLan3/game-wiki-starter only. Do not silently fall back to content markers when a remote exists.`,
+					`  fix: Set ${REPOSITORY_ID_FILENAME} to the exact normalized remote identity.`,
 				].join('\n'),
 			);
 		} else {
@@ -239,7 +264,7 @@ export function verifyRepoContext(rootDir: string): RepoContextResult {
 			);
 		}
 	} else {
-		const marker = readRepositoryMarker(rootDir);
+		const marker = repositoryMarker;
 		if (marker === null) {
 			errors.push(
 				[
@@ -248,16 +273,6 @@ export function verifyRepoContext(rootDir: string): RepoContextResult {
 					`  value: null`,
 					`  location: ${REPOSITORY_ID_FILENAME}`,
 					`  fix: Restore ${REPOSITORY_ID_FILENAME} with exact contents "${expectedRepositoryId}". Do not invent a remote.`,
-				].join('\n'),
-			);
-		} else if (marker !== expectedRepositoryId) {
-			errors.push(
-				[
-					'REPOSITORY_ID marker does not match the expected repository.',
-					`  field: ${REPOSITORY_ID_FILENAME}`,
-					`  value: ${JSON.stringify(marker)}`,
-					`  location: ${REPOSITORY_ID_FILENAME}`,
-					`  fix: Set ${REPOSITORY_ID_FILENAME} to exactly "${expectedRepositoryId}".`,
 				].join('\n'),
 			);
 		} else if (errors.length === 0) {
